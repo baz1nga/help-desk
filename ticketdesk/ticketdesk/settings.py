@@ -130,3 +130,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LANGUAGE_CODE = 'ru-ru'
 LOGIN_REDIRECT_URL = '/'    
+
+EMAIL_HOST = 'smtp.host.ru'
+EMAIL_HOST_USER = 'yourmail@mail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True    
