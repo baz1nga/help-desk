@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.humanize',
-    'markdown_deux',  # Required for Knowledgebase item formatting
-    'bootstrapform', # Required for nicer formatting of forms with the default templates
-    'helpdesk',  # This is us!
+    'markdown_deux', 
+    'bootstrapform', 
+    'helpdesk',
+    'bootstrap4',
+    'widget_tweaks',  
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -127,12 +129,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# Locale
 LANGUAGE_CODE = 'ru-ru'
-LOGIN_REDIRECT_URL = '/'    
 
-EMAIL_HOST = 'smtp.host.ru'
-EMAIL_HOST_USER = 'yourmail@mail.com'
+LOGIN_REDIRECT_URL = '/'
+
+# Email setting for helpdesk 
+EMAIL_HOST = 'smtp.host.com'
+EMAIL_HOST_USER = 'youremail@mail.com'
 EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True    
+
+# helpdesk settings
+HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
+HELPDESK_VIEW_A_TICKET_PUBLIC = True
+HELPDESK_SUBMIT_A_TICKET_PUBLIC = True
+
+# Static and media path
+STATIC_URL='/static/'
+STATIC_ROOT=os.path.join(BASE_DIR, 'static/')
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media/')

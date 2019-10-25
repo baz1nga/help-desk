@@ -1,40 +1,78 @@
-
+<html>
+<head>
 {% block content %}
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<title>Техническая поддержка Prosushi</title>
+{% load static %}
+<link rel="shortcut icon" type="media/" href="{% static 'media/favicon.ico' %}"/>
+<style>
+.text{
+    text-align:  center;
+}
+.dline {
+    line-height: 1.5;
+   }
+.space {
+    margin: 14 % auto;
+   }
+.logo {
+    text-align: center;
+    margin: 4% auto;  
+   }
+.error { 
+  color: red;
+  margin: 4 % auto;
+}   
+</style>
+</head>
+<body>
+{#<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{#<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">#}
 {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
+<div class="alert alert-danger" role="alert">
+      <strong> Ваш логин или пароль не подходит. Пожалуйста попробуйте еще раз. </strong>.
+</div>
 {% endif %}
 
 {% if next %}
   {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+    <p align='center' class="error"> У вас нет доступа к данному ресурсу. 
+                        Пожалуйста авторизуйтесь под другим аккаунтом.</p>
   {% else %}
-    <p>Please login to see this page.</p>
+    <h3><p align='center'>Добро пожаловать в службу технической поддержки Prosushi!</p></h3> 
+    <div class="alert alert-info" role="alert">
+      Пожалуйста введите <strong>имя пользователя</strong> и <strong>пароль</strong>.
+  </div>
   {% endif %}
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
+<div class="form-group">
 {% csrf_token %}
-<table>
-
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
+<table align='center' class="space">
+<tr> 
+  <td>{{ form.username.label_tag}}</td>
+  <td>{{ form.username|add_class:"form-control" }}</td>
 </tr>
 
 <tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
+  <td>{{ form.password.label_tag}}</td>
+  <td>{{ form.password|add_class:"form-control" }}</td>
 </tr>
 </table>
-
-<input type="submit" value="login" />
+</div>
+<div align='center' class="dline">
+<input class="btn btn-primary" type="submit" value="Вход" />
 <input type="hidden" name="next" value="{{ next }}" />
+</div>
 </form>
 
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+<p align='center'><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
 {% endblock %}
+</body>
+</html>

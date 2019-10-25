@@ -1,0 +1,5 @@
+/vscode/
+*.env
+helpdesk/attachments/
+ticketdesk/helpdesk/attachments/*
+ticketdesk/static/media/*
