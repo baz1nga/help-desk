@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'ticketdesk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'help_desk',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'help_desk_dev',
         'USER' : 'postgres',
         'PASSWORD' : '1qaz2wsx',
         'HOST' : '192.168.0.60',
@@ -115,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -130,16 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 # Locale
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
 
 LOGIN_REDIRECT_URL = '/'
 
 # Email setting for helpdesk 
 EMAIL_HOST = 'smtp.host.com'
-EMAIL_HOST_USER = 'youremail@mail.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True    
+EMAIL_HOST_USER = 'yourmail@host.com'
+EMAIL_HOST_PASSWORD = 'yourpass'
+EMAIL_PORT = 000
+EMAIL_USE_TLS = True/False   
 
 # helpdesk settings
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
