@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +28,7 @@ SECRET_KEY = '5x!j2mfv^yw_k(^6*s95z#j6ux-jv6l$%#o@vzqa@fyu0(($-7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', '192.168.0.137']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.137']
 
 
 
@@ -134,11 +137,11 @@ LANGUAGE_CODE = 'ru'
 LOGIN_REDIRECT_URL = '/'
 
 # Email setting for helpdesk 
-EMAIL_HOST = 'smtp.host.com'
-EMAIL_HOST_USER = 'yourmail@host.com'
-EMAIL_HOST_PASSWORD = 'yourpass'
-EMAIL_PORT = 000
-EMAIL_USE_TLS = True/False   
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'itsupport@profranshiza.ru'
+EMAIL_HOST_PASSWORD = '1123392SS++'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True 
 
 # helpdesk settings
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
@@ -150,3 +153,55 @@ STATIC_URL='/static/'
 STATIC_ROOT=os.path.join(BASE_DIR, 'static/')
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media/')
+
+AUTHENTICATION_BACKENDS = [
+    "django_python3_ldap.auth.LDAPBackend",
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+######################################
+##        LDAP Configuration        ## 
+######################################
+
+LDAP_AUTH_URL = "ldap://192.168.0.1:389"
+LDAP_AUTH_USE_TLS = False
+LDAP_AUTH_SEARCH_BASE = "ou=ADM,dc=prosushi,dc=local"
+LDAP_AUTH_OBJECT_CLASS = "inetOrgPerson"
+LDAP_AUTH_USER_FIELDS = {
+    "username": "uid",
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail",
+}
+LDAP_AUTH_USER_LOOKUP_FIELDS = ("username",)
+LDAP_AUTH_CLEAN_USER_DATA = "django_python3_ldap.utils.clean_user_data"
+LDAP_AUTH_SYNC_USER_RELATIONS = "django_python3_ldap.utils.sync_user_relations"
+LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filters"
+LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_active_directory"
+LDAP_AUTH_CONNECTION_USERNAME = None
+LDAP_AUTH_CONNECTION_PASSWORD = None
+LDAP_AUTH_CONNECT_TIMEOUT = None   
+LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "PROSUSHI"
+LDAP_AUTH_USER_FIELDS = {
+    "username": "sAMAccountName",
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail",
+}
+
+LDAP_AUTH_OBJECT_CLASS = "user"
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django_python3_ldap": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    },
+}
