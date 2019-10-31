@@ -137,11 +137,12 @@ LANGUAGE_CODE = 'ru'
 LOGIN_REDIRECT_URL = '/'
 
 # Email setting for helpdesk 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'itsupport@profranshiza.ru'
-EMAIL_HOST_PASSWORD = '1123392SS++'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True 
+
+EMAIL_HOST = 'smtp.host.com'
+EMAIL_HOST_USER = 'yourmail@host.com'
+EMAIL_HOST_PASSWORD = 'yourpass'
+EMAIL_PORT = 000
+EMAIL_USE_TLS = True/False
 
 # helpdesk settings
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
