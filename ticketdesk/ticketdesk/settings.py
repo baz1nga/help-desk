@@ -28,7 +28,7 @@ SECRET_KEY = '5x!j2mfv^yw_k(^6*s95z#j6ux-jv6l$%#o@vzqa@fyu0(($-7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.137']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.21','192.168.0.137' ]
 
 
 
@@ -88,9 +88,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'help_desk_dev',
-        'USER' : 'postgres',
-        'PASSWORD' : '1qaz2wsx',
-        'HOST' : '192.168.0.60',
+        'USER' : 'user',
+        'PASSWORD' : 'pass',
+        'HOST' : 'host',
         'PORT' : '5432',
     }
 }
@@ -137,12 +137,11 @@ LANGUAGE_CODE = 'ru'
 LOGIN_REDIRECT_URL = '/'
 
 # Email setting for helpdesk 
-
 EMAIL_HOST = 'smtp.host.com'
 EMAIL_HOST_USER = 'yourmail@host.com'
 EMAIL_HOST_PASSWORD = 'yourpass'
 EMAIL_PORT = 000
-EMAIL_USE_TLS = True/False
+EMAIL_USE_TLS = True
 
 # helpdesk settings
 HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = True
@@ -166,7 +165,7 @@ AUTHENTICATION_BACKENDS = [
 
 LDAP_AUTH_URL = "ldap://192.168.0.1:389"
 LDAP_AUTH_USE_TLS = False
-LDAP_AUTH_SEARCH_BASE = "ou=ADM,dc=prosushi,dc=local"
+LDAP_AUTH_SEARCH_BASE = "ou=STUFF,dc=prosushi,dc=local"
 LDAP_AUTH_OBJECT_CLASS = "inetOrgPerson"
 LDAP_AUTH_USER_FIELDS = {
     "username": "uid",
